@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence
+from typing import List, Optional, Sequence
 
 from pydantic import BaseModel
 from strictyaml import YAML, load
@@ -59,22 +59,22 @@ def fetch_config_from_yaml(cfg_path: Optional[Path] = None) -> YAML:
     """Fetch config from yaml file."""
     if not cfg_path:
         cfg_path = find_config_file()
-    with open(cfg_path, "r") as f:
-        cfg = load(f.read(), YAML())
-        return cfg
-    raise FileNotFoundError(f"Did not find config file at path: {cfg_path}")
+    try:
+        with open(cfg_path, "r") as f:
+            cfg = load(f.read(), YAML())
+            return cfg
+    except Exception:
+        raise FileNotFoundError(f"Did not find config file at path: {cfg_path}")
 
 
-def create_config(parsed_config: YAML = None) -> Config:
+def create_config(parsed_config: YAML = None) -> AppConfig:
     """Create config object from yaml file."""
     if not parsed_config:
         parsed_config = fetch_config_from_yaml()
-    return Config(
+    return AppConfig(
         app_config=AppConfig(**parsed_config["app_config"].data),
         model_config=ModelConfig(**parsed_config["model_config"].data),
     )
 
 
 config = create_config()
-
-

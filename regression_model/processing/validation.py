@@ -1,9 +1,9 @@
-from typing import List, Optional, Tuple
+import re
+from typing import List, Optional
 
 import numpy as np
 import pandas as pd
-from pydantic import BaseModel, ValidationError
-import re
+from pydantic import BaseModel
 
 from regression_model.config.core import config
 
@@ -15,10 +15,10 @@ def drop_na_inputs(*, input_data: pd.DataFrame) -> pd.DataFrame:
         var
         for var in config.model_config.features
         if var
-           not in config.model_config.categorical_vars_with_na_frequent
-           + config.model_config.categorical_vars_with_na_missing
-           + config.model_config.numerical_vars_with_na
-           and validated_data[var].isnull().sum() > 0
+        not in config.model_config.categorical_vars_with_na_frequent
+        + config.model_config.categorical_vars_with_na_missing
+        + config.model_config.numerical_vars_with_na
+        and validated_data[var].isnull().sum() > 0
     ]
     validated_data.dropna(subset=new_vars_with_na, inplace=True)
 
@@ -28,9 +28,7 @@ def drop_na_inputs(*, input_data: pd.DataFrame) -> pd.DataFrame:
 def drop_unnecessary_variables(*, input_data: pd.DataFrame) -> pd.DataFrame:
     """Drop unnecessary variables."""
     validated_data = input_data.copy()
-    validated_data.drop(
-        config.model_config.variables_to_drop, axis=1, inplace=True
-    )
+    validated_data.drop(config.model_config.variables_to_drop, axis=1, inplace=True)
 
     return validated_data
 
@@ -51,11 +49,10 @@ def get_first_cabin(input_data: pd.DataFrame) -> pd.DataFrame:
     def func(passenger):
         try:
             return passenger.split()[0]
-        except:
+        except Exception:
             return np.nan
-    return func
 
-    validated_data['cabin'] = validated_data['cabin'].apply(func)
+    validated_data["cabin"] = validated_data["cabin"].apply(func)
 
     return validated_data
 
@@ -68,18 +65,18 @@ def get_title(input_data: pd.DataFrame) -> pd.DataFrame:
 
     def func(passenger):
         line = passenger
-        if re.search('Mrs', line):
-            return 'Mrs'
-        elif re.search('Mr', line):
-            return 'Mr'
-        elif re.search('Miss', line):
-            return 'Miss'
-        elif re.search('Master', line):
-            return 'Master'
+        if re.search("Mrs", line):
+            return "Mrs"
+        elif re.search("Mr", line):
+            return "Mr"
+        elif re.search("Miss", line):
+            return "Miss"
+        elif re.search("Master", line):
+            return "Master"
         else:
-            return 'Other'
+            return "Other"
 
-    validated_data['title'] = validated_data['name'].apply(func)
+    validated_data["title"] = validated_data["name"].apply(func)
 
     return validated_data
 

@@ -4,6 +4,7 @@ package_name: titanic_regression_model
 # Data Files
 training_data_file: train.csv
 test_data_file: test.csv
+preprocessed_data_file: preprocessed_data.csv
 
 # Variables
 # The variable we are attempting to predict (sale price)
