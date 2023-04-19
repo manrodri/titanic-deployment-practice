@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a64088e5-597e-4be9-9111-4b85a9f1332f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/titanic-package.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mypy.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/VERSION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/config/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/config/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/datasets/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/datasets/test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/datasets/train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/pipeline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/predict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/processing/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/processing/data_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/processing/features.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/processing/validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/train_pipeline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/regression_model/trained_models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements/test_requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements/typing_requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tox.ini" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OXgkD3X23NG6B4BEjBNAMdK1QG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/manuel/PycharmProjects/titanic-package/regression_model/datasets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/regression_model/datasets" />
+      <recent name="$PROJECT_DIR$/requirements" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/regression_model" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a64088e5-597e-4be9-9111-4b85a9f1332f" name="Changes" comment="" />
+      <created>1681712481476</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681712481476</updated>
+      <workItem from="1681712484148" duration="6192000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

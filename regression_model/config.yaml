@@ -1,0 +1,82 @@
+# Package Overview
+package_name: titanic_regression_model
+
+# Data Files
+training_data_file: train.csv
+test_data_file: test.csv
+
+# Variables
+# The variable we are attempting to predict (sale price)
+target: survived
+
+pipeline_name: titanic_regression_model
+pipeline_save_file: titanic_regression_model_output_v
+
+features:
+  - pclass
+  - name
+  - sex
+  - age
+  - sibsp
+  - parch
+  - ticket
+  - fare
+  - cabin
+  - embarked
+  - title
+  - boat
+  - body
+  - home.dest
+
+# set train/test split
+test_size: 0.2
+
+# to set the random seed
+random_state: 0
+
+C: 0.0005
+
+variables_to_drop:
+  - name
+  - ticket
+  - boat
+  - body
+  - home.dest
+
+# categorical variables
+categorical_vars:
+  - sex
+  - cabin
+  - embarked
+  - title
+
+# categorical variables with NA in train set
+categorical_vars_with_na_frequent:
+  - cabin
+  - embarked
+
+categorical_vars_with_na_missing:
+  - cabin
+  - embarked
+
+numerical_vars:
+  - pclass
+  - age
+  - sibsp
+  - parch
+  - fare
+
+numeriacal_vars_to_cast_to_float:
+  - age
+  - fare
+
+numerical_vars_with_na:
+  - age
+  - fare
+
+numerical_vars_with_na_frequent:
+
+
+# variables to extract first letter
+extract_first_letter_vars:
+  - cabin
