@@ -9,7 +9,7 @@ import regression_model
 # Project Directories
 PACKAGE_ROOT = Path(regression_model.__file__).resolve().parent
 ROOT = PACKAGE_ROOT.parent
-CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
+CONFIG_FILE_PATH = PACKAGE_ROOT / "salary_config.yml"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
 
@@ -27,23 +27,16 @@ class AppConfig(BaseModel):
 
 class ModelConfig(BaseModel):
     """
-    All configuration relevant to model
-    training and feature engineering.
+        All configuration relevant to model
+        training and feature engineering.
     """
+
     target: str
     features: List[str]
+    numerical_vars_to_cast_to_float: List[str]
+    fit_intercept: bool
     test_size: float
     random_state: int
-    C: float
-    extract_first_letter_vars: List[str]
-    variables_to_drop: List[str]
-    categorical_vars: Sequence[str]
-    categorical_vars_with_na_frequent: List[str]
-    categorical_vars_with_na_missing: List[str]
-    numerical_vars: Sequence[str]
-    numerical_vars_with_na: List[str]
-    numerical_vars_to_cast_to_float: List[str]
-
 
 class Config(BaseModel):
     """Master config object."""
@@ -57,7 +50,7 @@ def find_config_file() -> Path:
     if CONFIG_FILE_PATH.is_file():
         return CONFIG_FILE_PATH
     else:
-        raise FileNotFoundError("Could not find config.yml file.")
+        raise FileNotFoundError("Could not find salary_config.yml file.")
 
 
 def fetch_config_from_yaml(cfg_path: Optional[Path] = None) -> YAML:
@@ -85,3 +78,4 @@ def create_config(parsed_config: YAML = None) -> Config:
 
 
 config = create_config()
+

@@ -67,16 +67,13 @@ numerical_vars:
   - parch
   - fare
 
-numeriacal_vars_to_cast_to_float:
+numerical_vars_to_cast_to_float:
   - age
   - fare
 
 numerical_vars_with_na:
   - age
   - fare
-
-numerical_vars_with_na_frequent:
-
 
 # variables to extract first letter
 extract_first_letter_vars:

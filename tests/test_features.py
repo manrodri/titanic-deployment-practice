@@ -1,4 +1,4 @@
-from regression_model.config import config
+from regression_model.config.core import config
 from regression_model.processing.features import ExtractLetterTransformer
 from regression_model.processing.validation import get_title
 

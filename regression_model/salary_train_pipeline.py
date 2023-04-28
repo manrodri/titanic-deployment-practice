@@ -1,7 +1,7 @@
 import numpy as np
-from config.core import config
-from pipeline import titanic_pipe
-from processing.data_manager import load_dataset, save_pipeline
+from config.salary_core import config
+from salary_pipeline import salary_pipeline
+from processing.salary_data_manager import load_dataset, save_pipeline
 from sklearn.model_selection import train_test_split
 
 
@@ -23,10 +23,10 @@ def run_training() -> None:
     # y_train = np.log(y_train)
 
     # fit model
-    titanic_pipe.fit(X_train, y_train)
+    salary_pipeline.fit(X_train, y_train)
 
     # persist trained model
-    save_pipeline(pipeline_to_persist=titanic_pipe)
+    save_pipeline(pipeline_to_persist=salary_pipeline)
 
 
 if __name__ == "__main__":
