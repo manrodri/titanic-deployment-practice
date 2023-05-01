@@ -2,7 +2,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class ExtractLetterTransformer(BaseEstimator, TransformerMixin):
-    # Extract fist letter of variable
+    # Extract first letter of variable
 
     def __init__(self, variables):
 
