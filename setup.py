@@ -6,11 +6,11 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 # Package meta-data.
-NAME = 'tid-titanic-classification-model'
+NAME = 'manrodri-test-titanic-classification-model'
 DESCRIPTION = "Example Titanic dataset classification model package from Train In Data."
-URL = "https://github.com/trainindata/deploying-machine-learning-models"
-EMAIL = "christopher.samiullah@protonmail.com"
-AUTHOR = "ChristopherGS"
+URL = "https://github.com/manrodri/titanic-deployment-practice"
+EMAIL = "man.rodri.barr@gmail.com"
+AUTHOR = "manrodri"
 REQUIRES_PYTHON = ">=3.7.0"
 
 
