@@ -1,9 +1,0 @@
-pandas
-numpy
-scikit-learn
-pydantic
-strictyaml
-feature-engine
-joblib
-black
-ruamel.yaml

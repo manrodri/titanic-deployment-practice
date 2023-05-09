@@ -1,0 +1,41 @@
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        description: semantic syntax version of the package
+        type: text
+
+jobs:
+   publish:
+     env:
+       KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+       KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       AWS_SECRETS_ACCESS_KEY: ${{ secrets.AWS_SECRETS_ACCESS_KEY }}
+       BUCKET_BASE_PATH: 'ml-model-packages/titanic-solution'
+       GEMFURY_PUSH_URL: ${{ secrets.GEMFURY_PUSH_URL }}
+
+
+     runs-on: ubuntu-latest
+     steps:
+       - name: install tox
+         run: | 
+           pip install tox --user tox
+           tox --version
+       - name: install kaggle
+         run: | 
+           pip install kaggle --user kaggle
+           kaggle --version
+       
+       - name: Fetch the data
+         run: |
+            tox -e fetch_data
+       - name: Test the model
+         run: |
+            tox
+       - name: Publish model to Gemfury
+         run: |  
+            tox -e publish_model
+           
+         
