@@ -5,16 +5,18 @@ on:
         required: true
         description: semantic syntax version of the package
         type: text
+        default: v.0.0.1
+      repository:
+        required: true
+        description: index server where to publish the package
+        type: choice
+        options:
+          - test_pypi
+          - gemfury
+
 
 jobs:
    publish:
-#     env:
-#       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#       AWS_SECRETS_ACCESS_KEY: ${{ secrets.AWS_SECRETS_ACCESS_KEY }}
-#       BUCKET_BASE_PATH: 'ml-model-packages/titanic-solution'
-#       GEMFURY_PUSH_URL: ${{ secrets.GEMFURY_PUSH_URL }}
-
-
      runs-on: ubuntu-latest
      permissions:
        id-token: write
@@ -46,9 +48,17 @@ jobs:
              --outdir dist/
 
        - name: Publish distribution 📦 to Test PyPI
+         if: ${{ inputs.repository == test_pypi }}
          uses: pypa/gh-action-pypi-publish@release/v1
          with:
            password: ${{ secrets.TEST_PYPI_API_TOKEN }}
            repository-url: https://test.pypi.org/legacy/
+       - name: Publish to Gemfury
+         if: ${{ inputs.repository == gemfury }}
+         env:
+           GEMFURY_PUSH_URL="https://${{ secrets.GEMFURY_PUSH_URL }}@push.fury.io/${{ secrets.GEMFURY_USERNAME }}/"
+         run: |
+           echo "GEMFURY_URL: $GEMFURY_URL"
+           ./publish_model.sh
            
          
