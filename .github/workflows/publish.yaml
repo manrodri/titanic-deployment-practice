@@ -48,13 +48,13 @@ jobs:
              --outdir dist/
 
        - name: Publish distribution 📦 to Test PyPI
-         if: ${{ inputs.repository == test_pypi }}
+         if: ${{  github.event.inputs.repository == 'test_pypi' }}
          uses: pypa/gh-action-pypi-publish@release/v1
          with:
            password: ${{ secrets.TEST_PYPI_API_TOKEN }}
            repository-url: https://test.pypi.org/legacy/
        - name: Publish to Gemfury
-         if: ${{ inputs.repository == gemfury }}
+         if: ${{ github.event.inputs.repository == 'gemfury' }}
          env:
            GEMFURY_PUSH_URL="https://${{ secrets.GEMFURY_PUSH_URL }}@push.fury.io/${{ secrets.GEMFURY_USERNAME }}/"
          run: |
