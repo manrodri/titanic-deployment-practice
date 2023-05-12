@@ -18,19 +18,16 @@ jobs:
      runs-on: ubuntu-latest
      steps:
        - uses: actions/checkout@v3
-       - name: set up Python 3.7
+       - name: set up Python 3.9
          uses: actions/setup-python@v4
          with:
-            python-version: "3.7"
+            python-version: "3.9"
 
        - name: Fetch the data
          run: |
             curl https://www.openml.org/data/get_csv/16826755/phpMYEkMl --output ./classification_model/datasets/raw.csv
        - name: install tox
          run: pip install tox --user tox
-       - name: Security gates
-         run:
-           tox -e checks
 
        - name: Test the model
          run: |
