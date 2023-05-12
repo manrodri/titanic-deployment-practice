@@ -56,9 +56,9 @@ jobs:
        - name: Publish to Gemfury
          if: ${{ github.event.inputs.repository == 'gemfury' }}
          env:
-           GEMFURY_PUSH_URL="https://${{ secrets.GEMFURY_PUSH_URL }}@push.fury.io/${{ secrets.GEMFURY_USERNAME }}/"
+           GEMFURY_PUSH_URL=${{ secrets.GEMFURY_URL }}"
          run: |
-           echo "GEMFURY_URL: $GEMFURY_URL"
+           echo "GEMFURY_URL: $GEMFURY_PUSH_URL"
            ./publish_model.sh
            
          
