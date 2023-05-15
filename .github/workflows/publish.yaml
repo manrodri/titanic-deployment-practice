@@ -5,37 +5,70 @@ on:
         required: true
         description: semantic syntax version of the package
         type: text
+        default: v.0.0.1
+      repository:
+        required: true
+        description: index server where to publish the package
+        type: choice
+        options:
+          - test_pypi
+          - gemfury
+          - prod_pypi
+
 
 jobs:
    publish:
-     env:
-       KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-       KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-       AWS_SECRETS_ACCESS_KEY: ${{ secrets.AWS_SECRETS_ACCESS_KEY }}
-       BUCKET_BASE_PATH: 'ml-model-packages/titanic-solution'
-       GEMFURY_PUSH_URL: ${{ secrets.GEMFURY_PUSH_URL }}
-
-
      runs-on: ubuntu-latest
+     permissions:
+       id-token: write
      steps:
-       - name: install tox
-         run: | 
-           pip install tox --user tox
-           tox --version
-       - name: install kaggle
-         run: | 
-           pip install kaggle --user kaggle
-           kaggle --version
-       
+       - uses: actions/checkout@v3
+       - name: set up Python 3.9
+         uses: actions/setup-python@v4
+         with:
+            python-version: "3.9"
+
        - name: Fetch the data
          run: |
-            tox -e fetch_data
+            curl https://www.openml.org/data/get_csv/16826755/phpMYEkMl --output ./classification_model/datasets/raw.csv
+       - name: install tox
+         run: pip install tox --user tox
+
        - name: Test the model
          run: |
             tox
-       - name: Publish model to Gemfury
-         run: |  
-            tox -e publish_model
-           
+       - name: Install pypa/build
+         run: |
+            pip install build --user
+       - name: Build a binary wheel and a source tarball
+         run: >-
+             python -m
+             build
+             --sdist
+             --wheel
+             --outdir dist/
+
+       - name: Publish distribution 📦 to Test PyPI
+         if: ${{  github.event.inputs.repository == 'test_pypi' }}
+         uses: pypa/gh-action-pypi-publish@release/v1
+         with:
+           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+           repository-url: https://test.pypi.org/legacy/
+
+
+       - name: Publish to Gemfury
+         if: ${{ github.event.inputs.repository == 'gemfury' }}
+
+         run: |
+           GEMFURY_TOKEN=${{ secrets.GEMFURY_TOKEN }}
+           GEMFURY_USER=${{ secrets.GEMFURY_USER }}
+           GEMFURY_URL=${{ secrets.GEMFURY_URL }}
+
+           ./publish_model.sh
+
+       - name: Publish distribution 📦 to PyPI
+         if: ${{ startsWith(github.ref, 'refs/tags') && github.event.inputs.repository == 'prod_pypi' }}
+         uses: pypa/gh-action-pypi-publish@release/v1
+         with:
+           password: ${{ secrets.PROD_PYPI_API_TOKEN }}
          
