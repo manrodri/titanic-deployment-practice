@@ -13,6 +13,7 @@ on:
         options:
           - test_pypi
           - gemfury
+          - prod_pypi
 
 
 jobs:
@@ -53,12 +54,23 @@ jobs:
          with:
            password: ${{ secrets.TEST_PYPI_API_TOKEN }}
            repository-url: https://test.pypi.org/legacy/
+
+
        - name: Publish to Gemfury
          if: ${{ github.event.inputs.repository == 'gemfury' }}
          env:
-           GEMFURY_PUSH_URL=${{ secrets.GEMFURY_URL }}
+           GEMFURY_TOKEN=${{ secrets.GEMFURY_TOKEN }}
+           GEMFURY_USER=${{ secrets.GEMFURY_USER }}
+           GEMFURY_URL=${{ secrets.GEMFURY_URL }}
          run: |
-           echo "GEMFURY_URL: $GEMFURY_PUSH_URL"
+           echo GEMFURY_USER: $GEMFURY_USER
+           echo GEMFURY_TOKEN: $GEMFURY_TOKEN
+           echo GEMFURY_URL: $GEMFURY_PUSH_URL
            ./publish_model.sh
-           
+
+       - name: Publish distribution 📦 to PyPI
+         if: ${{ startsWith(github.ref, 'refs/tags') && github.event.inputs.repository == 'prod_pypi' }}
+         uses: pypa/gh-action-pypi-publish@release/v1
+         with:
+           password: ${{ secrets.PROD_PYPI_API_TOKEN }}
          
