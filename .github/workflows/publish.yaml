@@ -64,7 +64,7 @@ jobs:
            GEMFURY_USER=${{ secrets.GEMFURY_USER }}
            GEMFURY_URL=${{ secrets.GEMFURY_URL }}
 
-           ./publish_model.sh
+           ./publish_model.sh dist
 
        - name: Publish distribution 📦 to PyPI
          if: ${{ startsWith(github.ref, 'refs/tags') && github.event.inputs.repository == 'prod_pypi' }}

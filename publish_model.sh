@@ -8,7 +8,6 @@ set -e
 
 DIRS="$@"
 BASE_DIR=$(pwd)
-SETUP="setup.py"
 
 warn() {
     echo "$@" 1>&2
@@ -20,24 +19,13 @@ die() {
 }
 
 build() {
-    DIR="${1/%\//}"
-    echo "Checking directory $DIR"
-    cd "$BASE_DIR/$DIR"
-    [ ! -e $SETUP ] && warn "No $SETUP file, skipping" && return
-    PACKAGE_NAME=$(python $SETUP --fullname)
-    echo "Package $PACKAGE_NAME"
+
     for X in ./dist/*
+
     do
-        curl -F package=@"dist/$X" "$GEMFURY_URL" || die "Uploading package $PACKAGE_NAME failed on file dist/$X"
+      [[ $X == *.tar.gz ]] &&  curl -F package=@"dist/$X" "$GEMFURY_URL" || die "Uploading package $PACKAGE_NAME failed"
+      [[ $X == *.whl ]] && curl -F package=@"dist/$X" "$GEMFURY_URL" || die "Uploading package $PACKAGE_NAME failed"
     done
 }
 
-if [ -n "$DIRS" ]; then
-    for dir in $DIRS; do
-        build $dir
-    done
-else
-    ls -d */ | while read dir; do
-        build $dir
-    done
-fi
+build
