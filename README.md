@@ -1,5 +1,8 @@
 # Productionized Titanic Classification Model Package
 
+## Course
+https://dsacademy.coursemaker.org/#courses
+
 ## Run With Tox (Recommended)
 - Download the data from: https://www.openml.org/data/get_csv/16826755/phpMYEkMl
 - Save the file as `raw.csv` in the classification_model/datasets directory
